@@ -1,20 +1,30 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
 
 function Header(props) {
 
-  if(props.Electrician){
-   console.log("he is an electrician")
-  }else {
-    console.log("he is not an electrician")
-  }
-    console.log(props)
-    return(
-      <React.Fragment>
-      <h1>Hello {props.name}</h1>
-      <h3>{props.name} is {props.age} years old</h3>
-      
-      </React.Fragment>
-    )
-  }
+  return (
+    <ul className="nav nav-pills">
+      {
+        props.pages.map((item, index) => {
+          return (
+            <li className="nav-item">
+              <a
+                //href={item.url}
+                onClick={() => props.setPage(index)}
+                className={"nav-link " + (props.currentPage === 0 ? 'active' : '')}
+                >
+                {item.readableName}
+              </a>
+            </li>
+          )
+        })
+      }
+      <div className="btn btn-secondary">
+        {props.children}
+        </div>
+    </ul>
+  )
+}
 
-  export default Header; 
+export default Header;
