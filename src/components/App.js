@@ -5,40 +5,35 @@ import Header from './Header'
 class App extends Component {
   constructor() {
     super();
-    this.RussellsName = "Russ";
-    this.age = 38;
-    
-
+    this.pages = [
+      { readableName: 'Home', url: 'home' },
+      { readableName: 'About Me', url: 'about-me' },
+      { readableName: 'Blog', url: 'blog' },
+      { readableName: 'Images', url: 'images' },
+      { readableName: 'Links', url: 'links' }
+    ];
     this.state = {
-      clicked: 0
+      currentPage: 0
     }
-
-    this.clickHandler = this.clickHandler.bind(this)
+    this.setPage=this.setPage.bind(this)
+  }
+  setPage(newPageNum){
+    console.log(newPageNum)
+    this.setState({ currentPage: newPageNum})
   }
 
-  clickHandler (e){
-    this.setState({clicked: this.state.clicked + 1 })
-  }
+
 
   render() {
     return (
-      <div className="App">
+      <div className="App container">
         <Header
-          text="Hello"
-          name={this.RussellsName}
-          age={this.age}
-          Electrician
-        />
-      App layer Component
-      <div>
-        clicked: {this.state.clicked}
-      </div>
-      <button
-       type="button"
-        className="btn btn-primary" 
-        onClick={this.clickHandler}
-        >click me!
-        </button>
+          pages={this.pages}
+          currentPage={this.state.currentPage}
+          setPage={this.setPage}
+        >
+        unformatted text
+      </Header>
       </div>
     )
   }
